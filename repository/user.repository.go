@@ -20,7 +20,7 @@ func (repository *userRepository) Save(user *domain.User) {
 
 func (repository *userRepository) ExistsByUsername(username string) bool {
 	var count int64
-	repository.db.Where("username = ?", username).Count(&count)
+	repository.db.Model(&domain.User{}).Where("username = ?", username).Count(&count)
 	return count > 0
 }
 
